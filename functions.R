@@ -1,6 +1,3 @@
-#This is R file contains functions required by WordPredictApp.
-#setwd("~/online courses/JHU-DataScience/10 Capstone Project/WordPredictApp")
-
 library(shiny)
 library(ggplot2)
 library(BH)
@@ -16,7 +13,6 @@ ngram1 <- readRDS("C:/Users/xssok/Documents/Coursera-SwiftKey/final/en_US/WordPr
 
 #clean the user input data
 cleanInput <- function(x) {
-  x <- as.character(x)
   x <- tokens(tolower(x), what = "word1", 
                      remove_numbers = TRUE, 
                      remove_punct = TRUE,
@@ -26,11 +22,12 @@ cleanInput <- function(x) {
                      split_hyphens = TRUE, 
                      remove_url = TRUE,
                      verbose = FALSE)
+  x <- as.character(x)
   return(x)
 }
 
 # getLastWords function used for get the last words of a sentence.
-# Ex. getLastWords( "thank you for looking through my code", 3 ) ==> "through my code"
+# Ex. getLastWords( "I'm happy that you are reading it!", 3 ) ==> "are reading it"
 getLastWords <- function(x, n) {
   x <- cleanInput(x)
   x <- as.character(x)
@@ -50,7 +47,7 @@ getLastWords <- function(x, n) {
   }
 }
 
-# Functions to check. The return of column will be like this: [nextword] [ngrams.scores]. 
+# Functions to check. The return of column will be like this: nextword/ngrams.scores 
 check5gram <- function(x, ngram5, getNrows) {
   words <- getLastWords(x, 4)
   match <- subset(ngram5, w1 == words[1] & w2 == words[2] & w3 == words[3] & w4 == words[4])
@@ -81,7 +78,6 @@ check4gram <- function(x, ngram4, getNrows) {
 
 check3gram <- function(x, ngram3, getNrows) {
   words <- getLastWords(x, 2)
-  #paste(words)
   match <- subset(ngram3, w1 == words[1] & w2 == words[2])
   match <- subset(match, select=c(w3, freq))
   match <- match[order(-match$freq), ]
@@ -107,7 +103,6 @@ check2gram <- function(x, ngram2, getNrows) {
   }
   match[1:getNrows, ]
 }
-#nrows = 30
 scoreNgrams <- function(x, nrows=30) {
   ngram5.match <- check5gram(x, ngram5, nrows)
   ngram4.match <- check4gram(x, ngram4, nrows)
