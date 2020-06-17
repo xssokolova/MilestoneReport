@@ -2,7 +2,7 @@ library(shiny)
 library(ggplot2)
 library(BH)
 library(NLP)
-
+library(quanteda)
 
 #Load the ngram dataframe
 ngram5 <- readRDS("C:/Users/xssok/Documents/Coursera-SwiftKey/final/en_US/WordPredictApp/ngram5.rds") 
