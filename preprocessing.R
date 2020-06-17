@@ -20,6 +20,26 @@ con <- file(news.file, "rb")
 nw <- readLines(con, encoding = "UTF-8", skipNul = TRUE)
 close(con)
 
+require("stringi")
+Blogs <- c(stri_stats_general(bl)[1],  stri_stats_latex(bl)[4], file.info(blogs.file)$size/(2^20))
+News <- c(stri_stats_general(nw)[1], stri_stats_latex(nw)[4], file.info(news.file)$size/(2^20))
+Twitter<- c(stri_stats_general(tw)[1], stri_stats_latex(tw)[4], file.info(twitter.file)$size/(2^20))
+Total <- Blogs+News+Twitter
+table <- as.data.frame(rbind(Blogs, News, Twitter, Total))
+rm(Blogs, News, Twitter, Total) # to clean RAM, rm - remove
+colnames(table)[3] <- "Size in Mb"
+table
+
+#            Lines     Words      Size in Mb
+# Blogs    899 288   37 570 839   200.4242
+# News    1 010 242  34 494 539   196.2775
+# Twitter 2 360 148  30 451 170   159.3641
+# Total   4 269 678  102 516 548  556.0658
+
+# The dataset contains 4,269,678 lines and 102,516,548 words! 
+# This is definetely too big to build the model as it will tale a long time to process. 
+# That is why we will sample it, the sample size is going to be 1% of the total size.
+
 # sampling, size = 10% of the Original data
 set.seed(123)
 SampleSize <- 0.1
