@@ -1,6 +1,6 @@
-#This file is preprocessing of data, including sampling, cleaning and tokenization.
+#This file is preprocessing of data: sampling, cleaning, tokenization and stemming.
 
-#Load data and sample 1 percent of whole dataset (blogs, news, twitter).
+#Load data and sample 10% of whole dataset (blogs, news, twitter).
 ## Files' addreses
 blogs.file <- "C:/Users/xssok/Documents/Coursera-SwiftKey/final/en_US/en_US.blogs.txt"
 twitter.file <- "C:/Users/xssok/Documents/Coursera-SwiftKey/final/en_US/en_US.twitter.txt"
@@ -16,7 +16,7 @@ con <- file(blogs.file, "r")
 bl <- readLines(con, encoding = "UTF-8", skipNul = TRUE)
 close(con)
 
-con <- file(news.file, "rb")
+con <- file(news.file, "rb") 
 nw <- readLines(con, encoding = "UTF-8", skipNul = TRUE)
 close(con)
 
@@ -74,7 +74,7 @@ trigram <- tokens_ngrams(unigram,n = 3)
 quadrogram <- tokens_ngrams(unigram,n = 4)
 fivegram <- tokens_ngrams(unigram,n = 5)
 
-# Create frequency matrix for unigram, bigram and trigram
+# Create frequency matrix for 1-5 grams
 dfm1 <- dfm(unigram, tolower = FALSE) # since already lowered before
 dfm2 <- dfm(bigram, tolower = FALSE)
 dfm3 <- dfm(trigram, tolower = FALSE)
@@ -94,8 +94,8 @@ save(dfmr1,dfmr2,dfmr3,dfmr4,dfmr5, file = "Reduced DFMs.Rdata")
 # CREATE DATA TABLES'S OF N-GRAM MODELS
 
 library("quanteda")
-load("Reduced DFMs.Rdata") # loaded as dfmr1,dfmr2,dfmr3
-# reduce them to named vectors gram1,2,3
+load("Reduced DFMs.Rdata") # loaded as dfmr1,dfmr2,dfmr3 
+# reduce them to named vectors gram1,2,3,4,5
 gram1 <- colSums(dfmr1)
 gram2 <- colSums(dfmr2)
 gram3 <- colSums(dfmr3)
