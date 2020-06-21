@@ -27,4 +27,4 @@ The dataset is from SwiftKey (Eng).
 
 ## Links
   - Shiny App: https://xssokolova.shinyapps.io/WordPredictApp/
-  - Milestone report on exploratory analysis about the Swift Key dataset:
+  - Milestone report on exploratory analysis about the Swift Key dataset: https://rpubs.com/xssokolova/MilestoneReport
