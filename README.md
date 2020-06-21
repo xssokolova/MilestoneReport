@@ -5,7 +5,7 @@ Capstone project of building a Shiny App with Natural Processing Model (NLP) to 
 The dataset is from SwiftKey (Eng).
 
 ## Models which were used in this project:
- - N-gram tokenization (from unigram to pentagram)
+  - N-gram tokenization (from unigram to pentagram)
   - Stupid-Backoff. 
   
 ## Files and folders guied:
