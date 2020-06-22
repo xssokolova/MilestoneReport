@@ -1,6 +1,5 @@
-#This file is preprocessing of data, including sampling, cleaning and tokenization.
+# sampling, cleaning and tokenization.
 
-#Load data and sample 1 percent of whole dataset (blogs, news, twitter).
 ## Files' addreses
 setwd("C:/Users/xssok/Documents/Coursera-SwiftKey/final/en_US/WordPredictApp")
 
@@ -102,13 +101,6 @@ gram2 <- colSums(dfmr2)
 gram3 <- colSums(dfmr3)
 gram4 <- colSums(dfmr4)
 gram5 <- colSums(dfmr5)
-
-# clean these to remove words with only _ (there are some somehow)
-#gram1 <- gram1[-grep("^[^a-z]",names(gram1),perl = TRUE)]
-#gram2 <- gram2[-grep("^[^a-z]",names(gram2),perl = TRUE)]
-#gram3 <- gram3[-grep("^[^a-z]",names(gram3),perl = TRUE)]
-#gram4 <- gram4[-grep("^[^a-z]",names(gram4),perl = TRUE)]
-#gram5 <- gram5[-grep("^[^a-z]",names(gram5),perl = TRUE)]
 
 library (data.table)
 
